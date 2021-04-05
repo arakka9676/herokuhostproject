@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=sender.name %> data</title>
+
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      #form {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <% include commonform %>
+    <h1><%=sender.name %>'s Data</h1>
+    <div id="tablebox">
+    <div id="usertable">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="tdata">ID</td>
+            <td>:</td>
+            <td><%=sender.id %></td>
+          </tr>
+          <tr>
+            <td class="tdata">Name</td>
+            <td>:</td>
+            <td><%=sender.name %></td>
+          </tr>
+          <tr>
+            <td class="tdata">Email</td>
+            <td>:</td>
+            <td><%=sender.email %></td>
+          </tr>
+          <tr>
+            <td class="tdata">Account Balance</td>
+            <td>:</td>
+            <td name="senderbalance" id="senderbalance">
+              <%=sender.accbalance %>
+            </td>
+          </tr>
+          <tr>
+            <td class="tdata">City</td>
+            <td>:</td>
+            <td><%=sender.city %></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div id="btnblock">
+
+        <button class="btn" id="useroptions" onclick="transfer()">Transfer</button>
+        <button class="btn" id="useroptions"><a href="/allusers">Back</a></button>
+        
+      </div>
+      
+    </div>
+      
+      <form action="/allusers/<%=sender.id %>" method="POST" id="form">
+
+        <select name="sendername" id="sendern" class="hide">
+          <option value="<%=sender.name%>" selected hidden>
+            <%=sender.name %>
+          </option>
+        </select>
+        <select name="senderbalance" id="senderbal" class="hide">
+          <option value="<%=sender.accbalance%>" selected hidden>
+            <%=sender.accbalance %>
+          </option>
+        </select>
+
+        <label for="credituser">Transfer to:</label>
+        <select name="receivername" id="credituser">
+          <option disabled selected hidden>Select Receiver</option>
+          <option value="James">James</option>
+          <option value="Oliver">Oliver</option>
+          <option value="Benjamin">Benjamin</option>
+          <option value="Lucas">Lucas</option>
+          <option value="Jacob">Jacob</option>
+          <option value="Charlotte">Charlotte</option>
+          <option value="Daniel">Daniel</option>
+          <option value="Michael">Michael</option>
+          <option value="Jonas">Jonas</option>
+          <option value="Alexander">Alexander</option>
+        </select>
+        
+        <label for="amount">Enter Amount to Transfer:</label>
+        <input
+          type="number"
+          name="amount"
+          id="amount"
+          placeholder="Enter Amount"
+        />
+        <button class="btn" id="sendbtn" onclick="sendmoney()">
+          Send Money
+        </button>
+       
+      </form>
+
+    <script>
+      function transfer() {
+        let btn = document.getElementById("transferbtn");
+        let form = document.getElementById("form");
+        if (form.style.display == "none") {
+          form.style.display = "flex";
+        } else {
+          form.style.display = "none";
+        }
+      }
+      function sendmoney() {
+        var amt = parseInt(document.getElementById("amount").value);
+        console.log(amt);
+        var sb = parseInt(document.getElementById("senderbalance").innerHTML);
+        console.log(sb);
+
+        if (amt <= 0) {
+          alert("Please Enter a valid Amount");
+        } else if (sb < amt) {
+          alert("Not have Enough Credits to Transfer");
+        } else {
+          alert("succesfull transfer");
+        }
+      }
+    </script>
+  </body>
+</html>
