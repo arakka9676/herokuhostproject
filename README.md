@@ -7,7 +7,10 @@ Flow: Home Page > View all Customers > Select and View one
 Customer > Transfer Money > Select customer to transfer to >
 View all Customers .
 
-FRONT-END - HTML5, CSS3, JAVASCRIPT, BOOTSTRAP
-BACKEND - NODE.JS
-DATABASE - MONGODB
-HOSTNAME - HEROKU
+FRONT-END - HTML5, CSS3, JAVASCRIPT, BOOTSTRAP ;
+
+BACKEND - NODE.JS ;
+
+DATABASE - MONGODB ;
+
+HOSTNAME - HEROKU ;
